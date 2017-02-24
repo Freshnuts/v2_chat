@@ -14,7 +14,6 @@ implementing a "better look". The program is on terminal only with no GUI. Altho
 in the future I might delve into a GUI version of v2, and apply a "chat room" functionality
 instead of just 2 users.
 
-
 Compiling Instructions:
 
 gcc v2_server.c -o v2_server -Wall
