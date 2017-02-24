@@ -17,4 +17,5 @@ instead of just 2 users.
 Compiling Instructions:
 
 gcc v2_server.c -o v2_server -Wall
+
 gcc v2_client.c -o v2_client -Wall
