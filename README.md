@@ -1,5 +1,5 @@
 # v2_chat
-A terminal Chat program written in C. P2P with 2 users only. 
+A LINUX terminal Chat program written in C. P2P with 2 users only. 
 
 I am currently interested in this project because of my interests in specializing
 Network Programming. Writing a chat program will allow me to practice threading in C
