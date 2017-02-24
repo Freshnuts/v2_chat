@@ -1,5 +1,5 @@
 # v2_chat
-A LINUX terminal Chat program written in C. P2P with 2 users only. 
+A LINUX terminal Chat program written in C. P2P with 2 users only.
 I am in the process of implementing encryption.
 
 Currently interested in this project because of my interests in specializing
@@ -10,8 +10,8 @@ proper ANSI C standards.
 
 
 This program is crude but functional, I am in the process of cleaning it up and
-implementing a "better look". The program is on terminal only with no GUI. Although,
-in the future I might delve into a GUI version of v2, and apply a "chat room" functionality
+implementing a "better look". Terminal only with no GUI. Although, in the future 
+I might delve into a GUI version of v2, and apply a "chat room" functionality
 instead of just 2 users.
 
 Compiling Instructions:
