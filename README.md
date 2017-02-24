@@ -1,7 +1,8 @@
 # v2_chat
 A LINUX terminal Chat program written in C. P2P with 2 users only. 
+I am in the process of implementing encryption.
 
-I am currently interested in this project because of my interests in specializing
+Currently interested in this project because of my interests in specializing
 Network Programming. Writing a chat program will allow me to practice threading in C
 at the same time. If you see any unsafe procedures or techniques in my coding please
 let me know, as I would like to stay far away from buffer overflows, & implement
