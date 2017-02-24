@@ -12,3 +12,9 @@ This program is crude but functional, I am in the process of cleaning it up and
 implementing a "better look". The program is on terminal only with no GUI. Although,
 in the future I might delve into a GUI version of v2, and apply a "chat room" functionality
 instead of just 2 users.
+
+
+Compiling Instructions:
+
+gcc v2_server.c -o v2_server -Wall
+gcc v2_client.c -o v2_client -Wall
