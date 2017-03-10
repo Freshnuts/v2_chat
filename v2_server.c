@@ -13,7 +13,7 @@
 int parent_wrt();
 int child_rcv();
 pid_t pid;
-char greeting[] = "Welcome to Freshnuts' Encrypted Server\n";
+char greeting[] = "Welcome to Freshnuts' Chat Server\n";
 char disconnect[] = "DISCONNECT\n";
 int sockfd, newsockfd, clilen, n, mysock, conn_sock;
 char buffer[MAX_BUF];
@@ -34,7 +34,7 @@ int main(int argc, char *argv) {
   printf("v2 is a P2P Chat for Linux/Unix.\n");
   printf("This program will allow you to chat directly\n"); 
   printf("to client/server without a middle man.\n");
-  printf("\nCTRL + C to quit\n");
+  printf("\nCTRL + C  or type \"DISCONNECT\" to quit\n");
   printf("==============================================================\n");
 // Create Socket
   mysock = socket(AF_INET, SOCK_STREAM, 0);
@@ -53,7 +53,7 @@ int main(int argc, char *argv) {
 	printf("Binded Socket.\n");
   }
 
-  if (listen(mysock, 3) < 0) {
+  if (listen(mysock, 1) < 0) {
 	perror("Error: ");
 	exit(0);
   }
@@ -92,7 +92,7 @@ int parent_wrt() {
 	fgets(message, sizeof(message), stdin);
     if (strcmp(message, disconnect) == 0) {
 //	  write(conn_sock,disconnected, sizeof(disconnected));
-      close(conn_sock);
+      shutdown(conn_sock, 2);
 	  exit(0);
     } else {
 	  write(conn_sock, message, sizeof(message));
@@ -106,7 +106,7 @@ int child_rcv() {
   while (conn_sock) {
 	if (recv(conn_sock, buffer, sizeof(buffer), 0) <= 0) {
 	  perror("Disconnected by Client: ");
-	  close(conn_sock);
+	  shutdown(conn_sock, 2);
 	  exit(0);
 	} else {
 	  printf("%s #> %s", inet_ntoa(cli_addr.sin_addr), buffer);
