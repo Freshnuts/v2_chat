@@ -14,7 +14,7 @@ int parent_wrt();
 int child_wrt();
 
 pid_t pid;
-int *accepted = "Client Greeting";
+int *accepted = "Client has Connected";
 char disconnect[] = "DISCONNECT\n";
 char disconnected[] = "Client Disconnected, Press CTRL + C\n";
 int sockfd, mysock, connected;
@@ -28,6 +28,14 @@ int main(int argc, char *argv[]) {
   server.sin_family = AF_INET;
   server.sin_port = htons(PORTNUM);
   server.sin_addr.s_addr = INADDR_ANY;
+
+// Intro
+  printf("\n==============================================================\n");
+  printf("v2 is a P2P Chat for Linux/Unix.\n");
+  printf("This program will allow you to chat directly\n");
+  printf("to client/server without a middle man.\n");
+  printf("\nCTRL + C  or type \"DISCONNECT\" to quit\n");
+  printf("==============================================================\n");
 
 // Create Socket
   mysock = socket(AF_INET, SOCK_STREAM, 0);
@@ -78,7 +86,7 @@ int parent_wrt() {
 	fgets(message, sizeof(message), stdin);
     if (strcmp(message, disconnect) == 0) {
 //    write(mysock, disconnected, sizeof(disconnected));
-      close(mysock);
+      shutdown(mysock, 2);
       exit(0);
       } else {
 	  write(mysock, message, sizeof(message));
@@ -92,7 +100,7 @@ int child_rcv() {
   while (mysock) {
     if (recv(mysock, buffer, MAX_BUF, 0) <= 0) {
 	  perror("Disconnected by Server ");
-	  close(mysock);
+	  shutdown(mysock, 2);
 	  exit(0);
 	} else {
 	  printf("%s #> %s", inet_ntoa(server.sin_addr), buffer);
