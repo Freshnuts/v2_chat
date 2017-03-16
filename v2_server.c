@@ -10,12 +10,12 @@
 #define MAX_BUF 256
 #define PORTNUM 4441
 
+int sockfd, newsockfd, clilen, n, mysock, conn_sock;
 int parent_wrt();
 int child_rcv();
 pid_t pid;
 char greeting[] = "Welcome to Freshnuts' Chat Server\n";
 char disconnect[] = "DISCONNECT\n";
-int sockfd, newsockfd, clilen, n, mysock, conn_sock;
 char buffer[MAX_BUF];
 char message[200];
 struct sockaddr_in serv_addr, cli_addr;
@@ -28,7 +28,6 @@ int main(int argc, char *argv) {
   serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
   serv_addr.sin_port = htons(PORTNUM);
 
-
 // Intro
   printf("\n==============================================================\n");
   printf("v2 is a P2P Chat for Linux/Unix.\n");
@@ -40,16 +39,15 @@ int main(int argc, char *argv) {
   mysock = socket(AF_INET, SOCK_STREAM, 0);
   if ( mysock < 0) {
 	perror("mysock Error: ");
-  }
-  else {
+  } else {
 	printf("Created Socket.\n");
   }
+
 // Bind Socket
   if (bind(mysock,(struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
 	perror("bind Error: ");
 	exit(0);
-  }
-  else {
+  } else {
 	printf("Binded Socket.\n");
   }
 
@@ -71,7 +69,7 @@ int main(int argc, char *argv) {
 	recv(conn_sock, buffer, sizeof(buffer), 0);
 	printf("%s #> %s\n", inet_ntoa(cli_addr.sin_addr), buffer);
 
-// Chat Loop
+// Chat Functions
   pid = fork();
 
   if (pid == 0 ) {
