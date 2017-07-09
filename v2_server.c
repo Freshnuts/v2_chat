@@ -69,7 +69,7 @@ int main(int argc, char *argv) {
 	recv(conn_sock, buffer, sizeof(buffer), 0);
 	printf("%s #> %s\n", inet_ntoa(cli_addr.sin_addr), buffer);
 
-// Chat Functions
+// Threading
   pid = fork();
 
   if (pid == 0 ) {
@@ -84,7 +84,7 @@ int main(int argc, char *argv) {
   return 0;
 }
 
-//Parent Process (Write to Socket Function)
+//Parent Process (Write to Socket)
 int parent_wrt() {
   while (conn_sock) {
 	fgets(message, sizeof(message), stdin);
@@ -99,7 +99,7 @@ int parent_wrt() {
   }
   return 0;
 }
-// Child Process (Recover from Socket Function)
+// Child Process (Recover Data from Socket)
 int child_rcv() {
   while (conn_sock) {
 	if (recv(conn_sock, buffer, sizeof(buffer), 0) <= 0) {
